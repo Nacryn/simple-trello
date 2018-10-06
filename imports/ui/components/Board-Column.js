@@ -4,11 +4,15 @@ import Task from './Task'
 
 export default class BoardColumn extends Component {
 
+  handleAddTask(event) {
+    console.log("pour l'instant ça fait rien !");
+  } 
+
   renderTasks() {
     return this.props.tasks.map((task) => {
       return (
         <Task
-          key={task.id}
+          key={task._id}
           task={task}
         />
       )
@@ -22,6 +26,7 @@ export default class BoardColumn extends Component {
         <ul>
           { this.renderTasks() }
         </ul>
+        <button onClick={this.handleAddTask.bind(this)}>++</button>
       </div>
     )
   }

@@ -6,27 +6,26 @@ import { Boards } from '../api/boards'
 import HeaderToolbar from './components/Header-Toolbar'
 import Board from './views/Board'
 import NoBoard from './views/No-Board'
-import BoardColumn from './components/Board-Column'
 
 // The whole App
 class App extends Component {
   constructor(props) {
     super(props)
-    
-    // TODO : Improve the way we handle the current selected board (REDUX !!!)
+
     this.state = {
       currentBoard: 0
     }
   }
 
   render() {
+    console.log("here are the boards : ", this.props.boards);
     return (
       <div className="container">
         <HeaderToolbar />
-        { this.props.currentBoard ?
+        { this.props.hasBoards ?
             <Board
-              key={this.props.currentBoardId}
-              board={this.props.currentBoard}
+              key={this.props.boards[this.state.currentBoard]._id}
+              board={this.props.boards[this.state.currentBoard]}
             />
           :
             <NoBoard />
@@ -37,7 +36,11 @@ class App extends Component {
 }
 
 export default withTracker(() => {
+  const boards = Boards.find({}).fetch()
+  const hasBoards = (boards.length) ? true : false
+
   return {
-    boards: Boards.find({}).fetch(),
+    boards,
+    hasBoards
   }
 }) (App)

@@ -1,4 +1,7 @@
-import react, { Component } from 'react'
+import React, { Component } from 'react'
+
+import BoardColumn from '../components/Board-Column'
+import BoardNoColumn from '../components/Board-No-Column';
 
 export default class Board extends Component {
 
@@ -7,7 +10,6 @@ export default class Board extends Component {
     return this.props.board.columns.map((column) => {
       return (
         <BoardColumn
-          key={column.key}
           tasks={column.tasks}
         />
       )
@@ -17,12 +19,14 @@ export default class Board extends Component {
   render() {
     return (
       <div className="board-container">
-        { this.props.board.columns ? 
+        { (0 < this.props.board.columns.length) ? 
           <ul>
             {this.renderColumns()}
           </ul>
           :
-          <div className="no-columns">Aucune colonnes dans ce tableau</div>
+          <BoardNoColumn
+            board={this.props.board}
+          />
         }
       </div>
     )
