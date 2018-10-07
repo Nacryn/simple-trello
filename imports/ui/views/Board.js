@@ -5,12 +5,20 @@ import BoardNoColumn from '../components/Board-No-Column';
 
 export default class Board extends Component {
 
+  handleAddMoreColumnClick(event) {
+    event.preventDefault()
+    Meteor.call('boards.addColumn', this.props.board._id, "so many tests")
+  }
+
   renderColumns() {
     // Print the board's columns
     return this.props.board.columns.map((column) => {
       return (
         <BoardColumn
+          boardId={this.props.board._id}
+          key={column.title}
           tasks={column.tasks}
+          openTaskModal={this.props.openTaskModal}
         />
       )
     })
@@ -20,9 +28,12 @@ export default class Board extends Component {
     return (
       <div className="board-container">
         { (0 < this.props.board.columns.length) ? 
-          <ul>
-            {this.renderColumns()}
-          </ul>
+          <div className="column-container">
+            <ul>
+              {this.renderColumns()}
+            </ul>
+            <button className="add-one-more-column" onClick={this.handleAddMoreColumnClick.bind(this)}>+++</button>
+          </div>
           :
           <BoardNoColumn
             board={this.props.board}
