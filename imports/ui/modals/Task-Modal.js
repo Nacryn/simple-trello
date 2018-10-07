@@ -11,37 +11,37 @@ import { Tasks } from '../../api/tasks'
 
 import '../../styles/task-modal.css'
 
-const rawTarget = {
-  title: '',
-  description: '',
-  boardId: '',
-  columnId: ''
+const rawState = {
+  target: {
+    title: '',
+    description: '',
+    boardId: '',
+    columnId: '',
+  },
+  labelAction: 'Ajouter',
+  loaded: false,
 }
 
 export default class TaskModal extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      target: Object.assign({}, rawTarget),
-      labelAction: 'Ajouter'
-    }
+    this.state = Object.assign({}, rawState)
   }
 
   handleTargetChange = variable => event => {
     // Little hack to merge the prop instead of replacing the whole content
-    let updatedTarget = this.state.target
+    let updatedTarget = Object.assign({}, this.state.target)
     updatedTarget[variable] = event.target.value
     this.setState({
       target: updatedTarget
     })
+    console.log('new state after change :', this.state);
   }
 
   handleCloseModal() {
-    console.log('raw target = ', rawTarget);
-    this.state.target = Object.assign({}, rawTarget)
+    this.setState(Object.assign({}, rawState))
     this.props.handleTaskModal(false, null)
-    console.log(this.state);
   }
 
   handleDelete() {
@@ -82,26 +82,24 @@ export default class TaskModal extends Component {
     this.handleCloseModal()
   }
 
-  clearForm() {
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.inputTitle).value = ''
-    ReactDOM.findDOMNode(this.refs.inputDescription).value = ''
-  }
-
   render() {
+    console.log("rendering again with : ", this.state.target.title);
     if ( ! this.props.isOpen ) {
       return null
     }
 
-    if ( this.props.target.taskId ) {
-      const task = Tasks.findOne(this.props.target.taskId)
-      this.state.target = task
-      this.state.labelAction = 'Mettre à jour'
-    }
-    else {
-      this.state.target.boardId = this.props.target.boardId
-      this.state.target.columnId = this.props.target.columnId
-      this.state.labelAction = 'Ajouter'
+    if (!this.state.loaded) {
+      if (this.props.target.taskId) {
+        const task = Tasks.findOne(this.props.target.taskId)
+        this.state.target = task
+        this.state.labelAction = 'Mettre à jour'
+      }
+      else {
+        this.state.target.boardId = this.props.target.boardId
+        this.state.target.columnId = this.props.target.columnId
+        this.state.labelAction = 'Ajouter'
+      }
+      this.state.loaded = true
     }
 
     return (
