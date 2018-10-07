@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import Task from './Task'
 
@@ -36,10 +40,15 @@ export default class BoardColumn extends Component {
       <div className="board-column-container">
         <div className="board-column-title">
           <div className="board-column-title-content">{this.props.column.title}</div>
-          <div className="board-column-title-delete" onClick={this.handleColumnDelete.bind(this)}>X</div>
+          <IconButton className="board-column-title-delete" aria-label="Effacer" onClick={this.handleColumnDelete.bind(this)}>
+            <DeleteIcon />
+          </IconButton>
         </div>
         { this.renderTasks() }
-        <button className="board-column-add" onClick={this.handleAddTask.bind(this)}>++</button>
+        
+        <Button variant="fab" mini color="secondary" aria-label="Add" className="board-column-add" onClick={this.handleAddTask.bind(this)}>
+          <AddIcon />
+        </Button>
       </div>
     )
   }

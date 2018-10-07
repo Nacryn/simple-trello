@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { withTracker } from 'meteor/react-meteor-data'
+import DeleteIcon from '@material-ui/icons/Delete'
+import Button from '@material-ui/core/Button';
 
 import { Boards } from '../../api/boards'
 
@@ -18,7 +20,9 @@ class BoardSelector extends Component {
     return (
       <div className="board-selector-container">
         <div className="board-selector-title">Project W</div>
-        <div className="board-selector-delete" onClick={this.handleDeleteBoard.bind(this)}>X</div>
+        <Button variant="fab" mini aria-label="Delete" className="board-selector-delete" onClick={this.handleDeleteBoard.bind(this)}>
+          <DeleteIcon />
+        </Button>
       </div>
     )
   }

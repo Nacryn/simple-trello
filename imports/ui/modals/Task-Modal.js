@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete'
+import DoneIcon from '@material-ui/icons/Done'
+import CloseIcon from '@material-ui/icons/Close'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField';
 
 import { Tasks } from '../../api/tasks'
 
@@ -17,14 +23,25 @@ export default class TaskModal extends Component {
     super(props)
 
     this.state = {
-      target: rawTarget,
+      target: Object.assign({}, rawTarget),
       labelAction: 'Ajouter'
     }
   }
 
+  handleTargetChange = variable => event => {
+    // Little hack to merge the prop instead of replacing the whole content
+    let updatedTarget = this.state.target
+    updatedTarget[variable] = event.target.value
+    this.setState({
+      target: updatedTarget
+    })
+  }
+
   handleCloseModal() {
-    this.state.target = rawTarget
+    console.log('raw target = ', rawTarget);
+    this.state.target = Object.assign({}, rawTarget)
     this.props.handleTaskModal(false, null)
+    console.log(this.state);
   }
 
   handleDelete() {
@@ -44,8 +61,8 @@ export default class TaskModal extends Component {
 
     // Gather form information to build the task to add / edit
     let upsertTask = {
-      title: ReactDOM.findDOMNode(this.refs.inputTitle).value.trim(),
-      description: ReactDOM.findDOMNode(this.refs.inputDescription).value.trim(),
+      title: this.state.target.title,
+      description: this.state.target.description,
     }
 
     // If we already have an ID, make an edit
@@ -55,14 +72,13 @@ export default class TaskModal extends Component {
     }
     // Else, make a create
     else {
-      upsertTask.boardId = ReactDOM.findDOMNode(this.refs.inputBoardId).value.trim()
-      upsertTask.columnId = ReactDOM.findDOMNode(this.refs.inputColumn).value.trim()
+      upsertTask.boardId = this.state.target.boardId
+      upsertTask.columnId = this.state.target.columnId
 
       Meteor.call('tasks.insert', upsertTask)
       console.log('INSERT task : ', upsertTask)
     }
 
-    this.clearForm()
     this.handleCloseModal()
   }
 
@@ -93,42 +109,43 @@ export default class TaskModal extends Component {
         <div className="task-modal">
           <div className="task-modal-title">
             <span>Ajouter une tâche</span>
-            <button onClick={this.handleCloseModal.bind(this)}>X</button>
+            <IconButton aria-label="Fermer" onClick={this.handleCloseModal.bind(this)}>
+              <CloseIcon />
+            </IconButton>
           </div>
 
           <div className="task-modal-content">
             <form id="new-task-form" onSubmit={this.handleSubmit.bind(this)}>
-              <input
-                type="text"
+              <TextField
+                id="input-Title"
                 ref="inputTitle"
-                placeholder="Titre"
-                defaultValue={this.state.target.title}
+                label="Titre de la tâche"
+                value={this.state.target.title}
+                onChange={this.handleTargetChange('title')}
+                margin="normal"
+                variant="outlined"
               />
-              <input
-                type="text"
+
+              <TextField
+                id="input-Description"
                 ref="inputDescription"
-                placeholder="Description"
-                defaultValue={this.state.target.description}
+                label="Description de la tâche"
+                value={this.state.target.description}
+                onChange={this.handleTargetChange('description')}
+                margin="normal"
+                variant="outlined"
               />
 
-              <input
-                type="text"
-                ref="inputBoardId"
-                value={this.state.target.boardId}
-              />
-
-              <input
-                type="text"
-                ref="inputColumn"
-                value={this.state.target.columnId}
-              />
-
-              <button type="submit" form="new-task-form">{this.state.labelAction}</button>
+              <Button variant="contained" type="submit" form="new-task-form">{this.state.labelAction}</Button>
             </form>
 
             <div className="task-modal-quick-actions">
-              <div className="task-modal-delete" onClick={this.handleDelete.bind(this)}>X</div>
-              <div className="task-modal-complete" onClick={this.handleComplete.bind(this)}>V</div>
+              <IconButton aria-label="Effacer" onClick={this.handleDelete.bind(this)}>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton aria-label="Completer" onClick={this.handleComplete.bind(this)}>
+                <DoneIcon />
+              </IconButton>
             </div>
           </div>
           

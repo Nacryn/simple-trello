@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import AddIcon from '@material-ui/icons/Add'
+import IconButton from '@material-ui/core/IconButton';
 
 import BoardColumn from '../components/Board-Column'
 import BoardNoColumn from '../components/Board-No-Column';
@@ -33,7 +35,9 @@ export default class Board extends Component {
         { (0 < this.props.board.columns.length) ? 
           <div className="columns-container">
             {this.renderColumns()}
-            <button className="add-one-more-column" onClick={this.handleAddMoreColumnClick.bind(this)}>+++</button>
+            <IconButton aria-label="Add" className="add-one-more-column" onClick={this.handleAddMoreColumnClick.bind(this)}>
+              <AddIcon />
+            </IconButton>
           </div>
           :
           <BoardNoColumn
