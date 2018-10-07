@@ -1,12 +1,27 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-import Tasks from '../../api/tasks'
+import { Tasks } from '../../api/tasks'
 
 import '../../styles/task-modal.css'
 
+const rawTarget = {
+  title: '',
+  description: '',
+  boardId: '',
+  columnId: ''
+}
+
 export default class TaskModal extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      target: rawTarget
+    }
+  }
   handleCloseModal() {
+    this.state.target = rawTarget
     this.props.handleTaskModal(false, null)
   }
 
@@ -35,6 +50,15 @@ export default class TaskModal extends Component {
       return null
     }
 
+    if ( this.props.target.taskId ) {
+      const task = Tasks.findOne(this.props.target.taskId)
+      this.state.target = task
+    }
+    else {
+      this.state.target.boardId = this.props.target.boardId
+      this.state.target.columnId = this.props.target.columnId
+    }
+
     return (
       <div className="task-modal-container">
         <div className="task-modal">
@@ -47,23 +71,25 @@ export default class TaskModal extends Component {
               type="text"
               ref="inputTitle"
               placeholder="Titre"
+              value={this.state.target.title}
             />
             <input
               type="text"
               ref="inputDescription"
               placeholder="Description"
+              value={this.state.target.description}
             />
 
             <input
               type="text"
               ref="inputBoardId"
-              value={this.props.target.boardId}
+              value={this.state.target.boardId}
             />
 
             <input
               type="text"
               ref="inputColumn"
-              value={this.props.target.column}
+              value={this.state.target.columnId}
             />
 
             <button type="submit" form="new-task-form">Ajouter</button>

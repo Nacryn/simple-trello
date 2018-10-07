@@ -8,7 +8,6 @@ export default class BoardColumn extends Component {
 
   handleAddTask(event) {
     event.preventDefault()
-    console.log(this.props);
     this.props.openTaskModal(true, null, this.props.boardId, this.props.column._id)
   } 
 
@@ -18,6 +17,7 @@ export default class BoardColumn extends Component {
         <Task
           key={task._id}
           task={task}
+          openTaskModal={this.props.openTaskModal}
         />
       )
     })

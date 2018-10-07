@@ -33,13 +33,13 @@ class App extends Component {
   }
 
   // Update the local state to open the modal and display the selected task
-  _handleTaskModalChange(isOpen, taskId, boardId, column) {
-    console.log('opening modal : ', isOpen, taskId, boardId, column);
+  _handleTaskModalChange(isOpen, taskId, boardId, columnId) {
+    console.log('opening modal : ', isOpen, taskId, boardId, columnId);
     this.setState({
       modals: {
         task:{
           isOpen,
-          target: { taskId, boardId, column }
+          target: { taskId, boardId, columnId }
         }
       }
     })
