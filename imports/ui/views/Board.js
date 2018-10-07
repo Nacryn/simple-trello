@@ -15,8 +15,9 @@ export default class Board extends Component {
     return this.props.board.columns.map((column) => {
       return (
         <BoardColumn
+          key={column._id}
+          columnId={column._id}
           boardId={this.props.board._id}
-          key={column.title}
           tasks={column.tasks}
           openTaskModal={this.props.openTaskModal}
         />

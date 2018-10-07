@@ -20,7 +20,11 @@ class App extends Component {
       modals: {
         task: {
           isOpen: false,
-          taskId: null
+          target: {
+            taskId: null,
+            boardId: null,
+            column: null
+          }
         }
       }
     }
@@ -29,9 +33,16 @@ class App extends Component {
   }
 
   // Update the local state to open the modal and display the selected task
-  _handleTaskModalChange(isOpen, taskId) {
-    console.log('opening modal : ', isOpen, taskId);
-    this.setState({modals:{task:{isOpen, taskId}}})
+  _handleTaskModalChange(isOpen, taskId, boardId, column) {
+    console.log('opening modal : ', isOpen, taskId, boardId, column);
+    this.setState({
+      modals: {
+        task:{
+          isOpen,
+          target: { taskId, boardId, column }
+        }
+      }
+    })
   }
 
   render() {
@@ -50,9 +61,9 @@ class App extends Component {
         }
         <TaskModal
           ref="taskmodal"
-          isOpen={this.state.modals.task.isOpen}
-          taskId={this.state.modals.task.taskId}
-          handleTaskModal={this._handleTaskModalChange}
+          isOpen={this.state.modals.task.isOpen}          // Is opened or not (thank you captain obvious)
+          target={this.state.modals.task.target}          // Task to display
+          handleTaskModal={this._handleTaskModalChange}   // Allow to affect the shared state about its display status
         />
       </div>
     )

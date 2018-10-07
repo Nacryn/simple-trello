@@ -26,6 +26,7 @@ Meteor.methods({
     
     // Create new column with received data
     let newColumn = {
+      _id: new Mongo.ObjectID().valueOf(),
       title,
       createdAt: new Date(),
       tasks: []

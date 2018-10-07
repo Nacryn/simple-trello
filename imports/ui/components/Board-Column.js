@@ -5,12 +5,9 @@ import Task from './Task'
 export default class BoardColumn extends Component {
 
   handleAddTask(event) {
-    const payload = {
-      boardId: this.props.boardId,
-      columnId: "test"
-    }
-    
-    this.props.openTaskModal(true, null)
+    event.preventDefault()
+    console.log(this.props);
+    this.props.openTaskModal(true, null, this.props.boardId, this.props.columnId)
   } 
 
   renderTasks() {
