@@ -1,0 +1,12 @@
+.task-container {
+  width: calc(100% - 20px);
+  padding: 20px;
+  margin: 10px 10px 0 10px;
+  box-sizing: border-box;
+
+  background-color: white;
+}
+
+.task-title {
+  
+}

@@ -1,0 +1,45 @@
+.task-modal-container {
+  position: absolute;
+  top:0;
+  left:0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.644);
+}
+
+.task-modal {
+  width: 450px;
+  margin: 100px auto; 
+
+  background-color: lightgray;
+}
+
+.task-modal-title {
+  width: 100%;
+
+  box-sizing: border-box;
+  padding: 20px;
+  
+  background-color: #222526;
+  color: white;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#new-task-form {
+  box-sizing: border-box;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+}

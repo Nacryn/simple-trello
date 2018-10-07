@@ -1,9 +1,9 @@
-.board-selector-container {
+.user-panel-container {
   display: flex;
   flex-direction: row;
 }
 
-.board-selector-title {
+.user-panel-name {
   font-size: 20px;
   margin-left: 20px;
   margin-right: 20px;

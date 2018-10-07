@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import BoardColumn from '../components/Board-Column'
 import BoardNoColumn from '../components/Board-No-Column';
 
+import '../../styles/board.css'
+
 export default class Board extends Component {
 
   handleAddMoreColumnClick(event) {
@@ -15,10 +17,10 @@ export default class Board extends Component {
     return this.props.board.columns.map((column) => {
       return (
         <BoardColumn
+          className="column"
           key={column._id}
-          columnId={column._id}
+          column={column}
           boardId={this.props.board._id}
-          tasks={column.tasks}
           openTaskModal={this.props.openTaskModal}
         />
       )
@@ -29,10 +31,8 @@ export default class Board extends Component {
     return (
       <div className="board-container">
         { (0 < this.props.board.columns.length) ? 
-          <div className="column-container">
-            <ul>
-              {this.renderColumns()}
-            </ul>
+          <div className="columns-container">
+            {this.renderColumns()}
             <button className="add-one-more-column" onClick={this.handleAddMoreColumnClick.bind(this)}>+++</button>
           </div>
           :

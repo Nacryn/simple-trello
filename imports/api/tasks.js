@@ -35,7 +35,7 @@ Meteor.methods({
     Boards.update(
       task.boardId,
       {
-        $push: { "columns.$[elem].tasks" : minifiedBoardVersion }
+        $push: { "columns.$[].tasks" : minifiedBoardVersion }
       },
       {
         arrayFilter: [ { "elem.title ": "Test" } ]

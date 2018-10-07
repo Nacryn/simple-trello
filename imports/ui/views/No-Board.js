@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+import '../../styles/board.css'
+
 export default class NoBoard extends Component {
   handleAddClick(event) {
     event.preventDefault()
@@ -16,14 +18,15 @@ export default class NoBoard extends Component {
   render() {
     return (
       <div className="no-board-container">
-        Désolé, mais il n'existe aucun tableau à l'heure actuelle.
-        <br/>
-        <input
-          type="text"
-          ref="textInput"
-          placeholder="Nom du tableau"
-        />
-        <button className="add-board" onClick={this.handleAddClick.bind(this)}>Ajouter un panneau</button>
+        <div className="no-board-message">Aucun tableau disponible</div>
+        <div className="add-board-container">
+          <input
+            type="text"
+            ref="textInput"
+            placeholder="Nom du tableau"
+          />
+          <button className="add-board" onClick={this.handleAddClick.bind(this)}>Créer un tableau</button>
+        </div>
       </div>
     )
   }

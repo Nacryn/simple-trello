@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+import '../../styles/board-column.css'
+
 export default class BoardNoColumn extends Component {
   
   handleAddColumn(event) {
@@ -17,15 +19,19 @@ export default class BoardNoColumn extends Component {
   render() {
     return (
       <div className="no-columns">
+        <div className="no-columns-message">
         Aucune colonne dans ce tableau
-
-        <input
-          type="text"
-          ref="inputTitle"
-          placeholder="Entrer un titre"
-        />
+        </div>
         
-        <button onClick={this.handleAddColumn.bind(this)}>Ajouter une colonne</button>
+        <div>
+          <input
+            type="text"
+            ref="inputTitle"
+            placeholder="Entrer un titre"
+          />
+          
+          <button onClick={this.handleAddColumn.bind(this)}>Ajouter une colonne</button>
+        </div>
       </div>
     )
   }

@@ -1,0 +1,44 @@
+.board-column-container {
+  width: 250px;
+  box-sizing: border-box;
+  margin-right: 2px;
+
+  background-color: lightgray;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.board-column-title {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  
+  background-color: green;
+  color: white;
+
+}
+
+.board-column-add {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* NO BOARD COLUMN */
+
+.no-columns {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 40px;
+  background-color: white;
+}
+
+.no-columns-message {
+  margin-bottom: 40px;
+}

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 
 import Tasks from '../../api/tasks'
 
+import '../../styles/task-modal.css'
+
 export default class TaskModal extends Component {
   handleCloseModal() {
     this.props.handleTaskModal(false, null)
@@ -36,6 +38,10 @@ export default class TaskModal extends Component {
     return (
       <div className="task-modal-container">
         <div className="task-modal">
+          <div className="task-modal-title">
+            <span>Ajouter une tâche</span>
+            <button onClick={this.handleCloseModal.bind(this)}>X</button>
+          </div>
           <form id="new-task-form" onSubmit={this.handleSubmit.bind(this)}>
             <input
               type="text"
@@ -63,7 +69,7 @@ export default class TaskModal extends Component {
             <button type="submit" form="new-task-form">Ajouter</button>
           </form>
           
-          <button onClick={this.handleCloseModal.bind(this)}>X</button>
+          
         </div>
       </div>
     )

@@ -1,4 +1,18 @@
 body {
-  padding: 10px;
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
+  height: 100vh;
+}
+
+#render-target {
+  height: 100%;
+}
+
+.app-container {
+  height: 100%;
+}
+
+button {
+  padding: 10px;
 }

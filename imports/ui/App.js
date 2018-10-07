@@ -7,7 +7,7 @@ import { Boards } from '../api/boards'
 import HeaderToolbar from './components/Header-Toolbar'
 import Board from './views/Board'
 import NoBoard from './views/No-Board'
-import TaskModal from './components/Task-Modal'
+import TaskModal from './modals/Task-Modal'
 
 // The whole App
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
   render() {
     console.log("here are the boards : ", this.props.boards);
     return (
-      <div className="container">
+      <div className="app-container">
         <HeaderToolbar />
         { this.props.hasBoards ?
             <Board
