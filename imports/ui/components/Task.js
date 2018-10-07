@@ -10,10 +10,12 @@ export default class Task extends Component {
 
   handleLeftClick() {
     console.log('let us move LEFT');
+    Meteor.call('tasks.moveColumn', this.props.task._id, 'left')
   }
 
   handleRightClick() {
     console.log('let us move RIGHT');
+    Meteor.call('tasks.moveColumn', this.props.task._id, 'right')
   }
 
   render() {

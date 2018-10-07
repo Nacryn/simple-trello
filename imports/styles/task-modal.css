@@ -31,15 +31,43 @@
   align-items: center;
 }
 
+.task-modal-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #new-task-form {
   box-sizing: border-box;
   padding: 20px;
 
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 input {
   display: block;
   margin-bottom: 10px;
+}
+
+.task-modal-quick-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  height: 100%;
+  margin-left: 20px;
+}
+
+.task-modal-delete, .task-modal-complete {
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  text-align: center;
+  line-height: 20px;
 }
