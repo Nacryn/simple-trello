@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import IconButton from '@material-ui/core/IconButton'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 import '../../styles/task'
 
@@ -26,8 +29,12 @@ export default class Task extends Component {
           <div className="task-description">{this.props.task.description}</div>
         </div>
         <div className="task-action-bar">
-          <div className="action-move-left" onClick={this.handleLeftClick.bind(this)}> |-- </div>
-          <div className="action-move-right" onClick={this.handleRightClick.bind(this)}> --| </div>
+          <IconButton className="action-move-left" aria-label="Déplacer à gauche" onClick={this.handleLeftClick.bind(this)}>
+            <ArrowBackIcon fontSize="small" />
+          </IconButton>
+          <IconButton className="action-move-right" aria-label="Déplacer à droite" onClick={this.handleRightClick.bind(this)}>
+            <ArrowForwardIcon fontSize="small" />
+          </IconButton>
         </div>
       </div>
     )

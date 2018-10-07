@@ -19,8 +19,8 @@
 }
 
 .add-one-more-column {
-  height: 20px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
   margin: 10px 20px;
   padding: 0px;
 }
@@ -28,9 +28,18 @@
 /* NO BOARD */
 
 .no-board-container {
-  padding: 40px;
+  padding-top: 60px;
+  width: 320px;
+  text-align: center;
+  margin: auto;
+}
+
+.add-board-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .no-board-message {
   margin-bottom: 40px;
+  font-size: 32px;
 }

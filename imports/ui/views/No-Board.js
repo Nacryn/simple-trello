@@ -31,7 +31,7 @@ export default class NoBoard extends Component {
   render() {
     return (
       <div className="no-board-container">
-        <div className="no-board-message">Aucun tableau disponible</div>
+        <div className="no-board-message">Aucun tableau disponible :(</div>
         <div className="add-board-container">
           <TextField
             id="input-boardTitle"

@@ -25,11 +25,11 @@ Meteor.methods({
 
     // Build a version of the task with onl the info displayed on the board
     // Used for Data Fan-out
-    const minifiedBoardVersion = {
-      _id: newTaskId,
-      title: task.title,
-      description: task.description
-    }
+    // const minifiedBoardVersion = {
+    //   _id: newTaskId,
+    //   title: task.title,
+    //   description: task.description
+    // }
     
     // Then save the downsized version into the board / column for fast access
     // console.log("task column id : ", task.columnId);
@@ -87,6 +87,7 @@ Meteor.methods({
     // Find the board in which the task is
     const board = Boards.findOne(task.boardId)
 
+    // Find the next column to move to (according to left or right)
     // TODO : Improve this hack
     const indexCurrColumn = board.columns.findIndex( (elem) => elem._id == task.columnId )
     let newIndex = ('left' == direction) ? indexCurrColumn - 1 : indexCurrColumn + 1
@@ -99,5 +100,6 @@ Meteor.methods({
     // Update the task with the new columnId
     const newColumnId = board.columns[newIndex]._id
     Tasks.update(taskId, { $set: { columnId: newColumnId } })
+    Boards.update(task.boardId, { $set: { lastUpdated: new Date() }})
   }
 })

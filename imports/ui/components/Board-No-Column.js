@@ -31,21 +31,20 @@ export default class BoardNoColumn extends Component {
   render() {
     return (
       <div className="no-columns">
-        <div className="no-columns-message">
-          Aucune colonne dans ce tableau
+        <div className="no-columns-message">Aucune colonne dans ce tableau !</div>
+        <div className="add-column-container">
+          <TextField
+            id="input-title"
+            ref="inputTitle"
+            label="Titre"
+            value={this.state.titre}
+            onChange={this.handleChange('titre')}
+            margin="normal"
+            variant="outlined"
+          />
+          
+          <Button variant="contained" onClick={this.handleAddColumn.bind(this)}>Ajouter une colonne</Button>
         </div>
-
-        <TextField
-          id="input-title"
-          ref="inputTitle"
-          label="Titre"
-          value={this.state.titre}
-          onChange={this.handleChange('titre')}
-          margin="normal"
-          variant="outlined"
-        />
-        
-        <Button variant="contained" onClick={this.handleAddColumn.bind(this)}>Ajouter une colonne</Button>
       </div>
     )
   }

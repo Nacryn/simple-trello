@@ -38,7 +38,7 @@ Meteor.methods({
     currentColumns.push(newColumn)
 
     // Update the board
-    Boards.update(boardId, { $set: {columns: currentColumns} })
+    Boards.update(boardId, { $push: {columns: newColumn} })
   },
 
   'boards.removeColumn'(boardId, columnId) {

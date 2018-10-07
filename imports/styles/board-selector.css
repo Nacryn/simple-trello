@@ -1,10 +1,17 @@
 .board-selector-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.separator {
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .board-selector-title {
-  font-size: 20px;
+  font-size: 26px;
   margin-left: 20px;
   margin-right: 20px;
 }

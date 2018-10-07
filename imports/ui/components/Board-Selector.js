@@ -17,12 +17,20 @@ class BoardSelector extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
-      <div className="board-selector-container">
-        <div className="board-selector-title">Project W</div>
-        <Button variant="fab" mini aria-label="Delete" className="board-selector-delete" onClick={this.handleDeleteBoard.bind(this)}>
-          <DeleteIcon />
-        </Button>
+      <div>
+        { (0 == this.props.boards.length) ?
+          ''
+          :
+          <div className="board-selector-container">
+            <div className="separator">|</div>
+            <div className="board-selector-title">{ this.props.boards[this.props.currentBoardIndex].title }</div>
+            <Button variant="fab" mini aria-label="Delete" className="board-selector-delete" onClick={this.handleDeleteBoard.bind(this)}>
+              <DeleteIcon />
+            </Button>
+          </div>
+        } 
       </div>
     )
   }

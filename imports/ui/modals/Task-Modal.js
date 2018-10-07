@@ -136,7 +136,7 @@ export default class TaskModal extends Component {
                 variant="outlined"
               />
 
-              <Button variant="contained" type="submit" form="new-task-form">{this.state.labelAction}</Button>
+              <Button className="task-modal-validate" variant="contained" type="submit" form="new-task-form">{this.state.labelAction}</Button>
             </form>
 
             <div className="task-modal-quick-actions">

@@ -41,14 +41,17 @@ export default class BoardColumn extends Component {
         <div className="board-column-title">
           <div className="board-column-title-content">{this.props.column.title}</div>
           <IconButton className="board-column-title-delete" aria-label="Effacer" onClick={this.handleColumnDelete.bind(this)}>
-            <DeleteIcon />
+            <DeleteIcon fontSize="small" />
           </IconButton>
         </div>
-        { this.renderTasks() }
-        
-        <Button variant="fab" mini color="secondary" aria-label="Add" className="board-column-add" onClick={this.handleAddTask.bind(this)}>
-          <AddIcon />
-        </Button>
+
+        <div className="board-column-content">
+          { this.renderTasks() }
+          
+          <Button variant="fab" mini color="primary" aria-label="Add" className="board-column-add" onClick={this.handleAddTask.bind(this)}>
+            <AddIcon />
+          </Button>
+        </div>
       </div>
     )
   }

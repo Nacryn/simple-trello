@@ -17,32 +17,48 @@
   padding: 10px;
   box-sizing: border-box;
   
-  background-color: green;
+  background-color: #3f51b5;
   color: white;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.board-column-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: scroll;
+  width: 100%;
 }
 
 .board-column-add {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 20px !important; /* Couldn't figure out yet how to override style with imported components */
+  margin-bottom: 20px !important;
+  flex-shrink: 0 !important;
 }
 
 /* NO BOARD COLUMN */
 
 .no-columns {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 40px;
-  background-color: white;
+  padding-top: 60px;
+  width: 320px;
+  text-align: center;
+  margin: auto;
 }
 
 .no-columns-message {
   margin-bottom: 40px;
+  font-size: 32px;
+}
+
+.add-column-container {
+  display: flex;
+  flex-direction: column;
 }

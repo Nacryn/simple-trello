@@ -27,11 +27,5 @@
 }
 
 .action-move-left, .action-move-right {
-  width: 70px;
-  padding: 5px;
-  text-align: center;
-}
 
-.action-move-left:hover, .action-move-right:hover {
-  background-color: aquamarine;
 }
