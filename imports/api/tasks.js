@@ -20,7 +20,7 @@ Meteor.methods({
       username: 'TBA',
       boardId: task.boardId,
       columnId: task.columnId,
-      completed: false,s
+      completed: false,
     })
 
     // Build a version of the task with onl the info displayed on the board

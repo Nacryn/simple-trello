@@ -10,7 +10,13 @@ export default class HeaderToolbar extends Component {
   render() {
     return (
       <div className="header-container">
-        <BoardSelector />
+        <div>
+          <div className="app-title">SIMPLE TRELLO</div>
+          <BoardSelector
+            currentBoardIndex={this.props.currentBoardIndex}
+          />
+        </div>
+        
         <UserPanel />
       </div>
     )

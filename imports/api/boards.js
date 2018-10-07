@@ -41,6 +41,16 @@ Meteor.methods({
     Boards.update(boardId, { $set: {columns: currentColumns} })
   },
 
+  'boards.removeColumn'(boardId, columnId) {
+    check(boardId, String)
+    check(columnId, String)
+
+    Boards.update(
+      boardId,
+      { $pull: { columns: { _id: columnId }}}
+    )
+  },
+
   'boards.remove'(boardId) {
     check(boardId, String)
     Boards.remove(boardId)

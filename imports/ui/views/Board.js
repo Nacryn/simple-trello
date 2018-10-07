@@ -9,7 +9,7 @@ export default class Board extends Component {
 
   handleAddMoreColumnClick(event) {
     event.preventDefault()
-    Meteor.call('boards.addColumn', this.props.board._id, "so many tests")
+    Meteor.call('boards.addColumn', this.props.board._id, "Nouvelle section")
   }
 
   renderColumns() {

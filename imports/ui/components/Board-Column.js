@@ -13,6 +13,11 @@ export default class BoardColumn extends Component {
     this.props.openTaskModal(true, null, this.props.boardId, this.props.column._id)
   } 
 
+  handleColumnDelete() {
+    Meteor.call('boards.removeColumn', this.props.boardId, this.props.column._id)
+    console.log("DELETE one column");
+  }
+
   renderTasks() {
     const relatedTasks = Tasks.find({ columnId: this.props.column._id }).fetch()
     return relatedTasks.map((task) => {
@@ -29,7 +34,10 @@ export default class BoardColumn extends Component {
   render() {
     return (
       <div className="board-column-container">
-        <div className="board-column-title">{this.props.column.title}</div>
+        <div className="board-column-title">
+          <div className="board-column-title-content">{this.props.column.title}</div>
+          <div className="board-column-title-delete" onClick={this.handleColumnDelete.bind(this)}>X</div>
+        </div>
         { this.renderTasks() }
         <button className="board-column-add" onClick={this.handleAddTask.bind(this)}>++</button>
       </div>

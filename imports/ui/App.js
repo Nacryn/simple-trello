@@ -15,7 +15,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      currentBoard: 0,
+      currentBoardIndex: 0,
 
       modals: {
         task: {
@@ -49,16 +49,20 @@ class App extends Component {
     console.log("here are the boards : ", this.props.boards);
     return (
       <div className="app-container">
-        <HeaderToolbar />
+        <HeaderToolbar
+          currentBoardIndex={this.state.currentBoardIndex}
+        />
+
         { this.props.hasBoards ?
             <Board
-              key={this.props.boards[this.state.currentBoard]._id}
-              board={this.props.boards[this.state.currentBoard]}
+              key={this.props.boards[this.state.currentBoardIndex]._id}
+              board={this.props.boards[this.state.currentBoardIndex]}
               openTaskModal={this._handleTaskModalChange}
             />
           :
             <NoBoard />
         }
+
         <TaskModal
           ref="taskmodal"
           isOpen={this.state.modals.task.isOpen}          // Is opened or not (thank you captain obvious)
